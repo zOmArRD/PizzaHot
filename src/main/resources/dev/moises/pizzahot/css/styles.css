@@ -1,0 +1,92 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f112ff, #723ab6, #7b62c4, #4a6ec0);
+    -fx-background-radius: 28;
+}
+
+.container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 28;
+}
+
+#barContainer {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 28 28 0 0;
+}
+
+#appTitle {
+    -fx-fill: #000000;
+    -fx-font-size: 13px;
+}
+
+#appTitle2 {
+    -fx-fill: #000000;
+    -fx-font-size: 32px;
+}
+
+.subTitle1 {
+    -fx-font-size: 22px;
+}
+
+.subTitle3 {
+    -fx-font-size: 15px;
+}
+
+.text3 {
+    -fx-font-size: 14px;
+}
+
+.textField {
+    -fx-background-color: transparent;
+    -fx-border-color: #000000;
+    -fx-border-radius: 28;
+    -fx-font-size: 13px;
+}
+
+.appSubTitle {
+    -fx-fill: #000000;
+    -fx-font-size: 20px;
+}
+
+.btnContinue {
+    -fx-background-color: #4a6ec0;
+    -fx-background-radius: 28;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+}
+
+.btnContinue:hover {
+    -fx-background-color: #7b62c4;
+    -fx-background-radius: 28;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+}
+
+.title1 {
+    -fx-font-size: 20px;
+}
+
+.title2 {
+    -fx-font-size: 16px;
+}
+
+.scroll-pane {
+    -fx-padding: 20 0 20 0;
+}
+
+.item-vbox {
+    -fx-background-color: #f2f2f2; /* Color de fondo */
+    -fx-background-radius: 10px; /* Radio de las esquinas */
+    -fx-border-width: 1px; /* Ancho del borde */
+    -fx-border-color: #dddddd; /* Color del borde */
+
+    /* Efecto de hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 1);
+
+    /* Tamaño predeterminado */
+    -fx-min-width: 200px; /* Ancho mínimo */
+    -fx-min-height: 200px; /* Alto mínimo */
+}
+
+.item-vbox:hover {
+    -fx-background-color: #e0e0e0; /* Cambiar el color de fondo en el hover */
+}
