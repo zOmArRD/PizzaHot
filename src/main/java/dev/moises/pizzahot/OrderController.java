@@ -1,6 +1,8 @@
 package dev.moises.pizzahot;
 
-import dev.moises.pizzahot.manager.items.Item;
+import dev.moises.pizzahot.manager.cart.CartItem;
+import dev.moises.pizzahot.manager.cart.PizzaCartItem;
+import dev.moises.pizzahot.manager.cart.ShoppingCart;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -22,7 +24,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-import java.util.HashMap;
+
 import java.util.Map;
 
 public class OrderController extends BaseController {
@@ -46,9 +48,7 @@ public class OrderController extends BaseController {
     public void init(Stage stage) {
         super.init(stage);
 
-        btnOrder.setOnMouseClicked(event -> {
-            showOrderConfirmation(stage);
-        });
+        btnOrder.setOnMouseClicked(event -> showOrderConfirmation(stage));
 
         setupCart();
 
@@ -69,21 +69,46 @@ public class OrderController extends BaseController {
         VBox vBox = new VBox();
         vBox.setSpacing(50);
 
-        Item[] items = {
-                new Item("Pizza Pepperoni", 299.99, "pizzape.png"),
-                new Item("Pizza BBQ", 349.99, "pizzabbq.png"),
-                new Item("Pizza Teriyaki", 369.99, "pizzateri.png"),
-                new Item("Pizza Vegetariana", 320.00, "pizzaveg.png"),
-                new Item("Pizza Pollo", 315.00, "pizzapollo.png"),
-                new Item("Pizza Queso", 319.99, "pizzaque.png"),
-                new Item("Pizza Hawaiana", 399.99, "pizzahaw.png"),
-                new Item("Pizza Jamón", 250.00, "pizzajam.png"),
-                new Item("Pepsi", 25.00, "pepsi.png"),
-                new Item("7up", 25.00, "7up.png"),
-                new Item("Coca Cola", 25.00, "cocacola.png"),
-                new Item("Sprite", 25.00, "sprite.png"),
-                new Item("Fanta", 35.00, "fanta.png"),
-                new Item("Agua", 20.00, "agua.png"),
+        CartItem[] items = {
+                new PizzaCartItem("Pizza Pepperoni", "La clásica de 8 pedazos", 59.99, "pizzape.png", 8),
+                new PizzaCartItem("Pizza Pepperoni", "La clásica de 10 pedazos", 100.99, "pizzape.png", 10),
+                new PizzaCartItem("Pizza Pepperoni", "La clásica de 12 pedazos", 199.99, "pizzape.png", 12),
+
+                new PizzaCartItem("Pizza BBQ", "La de la salsa, 8 pedazos", 89.99, "pizzabbq.png", 8),
+                new PizzaCartItem("Pizza BBQ", "La de la salsa, 10 pedazos", 130.99, "pizzabbq.png", 10),
+                new PizzaCartItem("Pizza BBQ", "La de la salsa, 12 pedazos", 229.99, "pizzabbq.png", 12),
+
+                new PizzaCartItem("Pizza Teriyaki", "La exótica, 8 pedazos", 99.99, "pizzateri.png", 8),
+                new PizzaCartItem("Pizza Teriyaki", "La exótica, 10 pedazos", 140.99, "pizzateri.png", 10),
+                new PizzaCartItem("Pizza Teriyaki", "La exótica, 12 pedazos", 239.99, "pizzateri.png", 12),
+
+                new PizzaCartItem("Pizza Vegetariana", "La de los vegetales, 8 pedazos", 89.99, "pizzaveg.png", 8),
+                new PizzaCartItem("Pizza Vegetariana", "La de los vegetales, 10 pedazos", 130.99, "pizzaveg.png", 10),
+                new PizzaCartItem("Pizza Vegetariana", "La de los vegetales, 12 pedazos", 229.99, "pizzaveg.png", 12),
+
+                new PizzaCartItem("Pizza Pollo", "La de pollo, 8 pedazos", 70.99, "pizzapollo.png", 8),
+                new PizzaCartItem("Pizza Pollo", "La de pollo, 10 pedazos", 110.99, "pizzapollo.png", 10),
+                new PizzaCartItem("Pizza Pollo", "La de pollo, 12 pedazos", 209.99, "pizzapollo.png", 12),
+
+
+                new PizzaCartItem("Pizza Queso", "La golosa, 8 pedazos", 95.99, "pizzaque.png", 8),
+                new PizzaCartItem("Pizza Queso", "La golosa, 10 pedazos", 135.99, "pizzaque.png", 10),
+                new PizzaCartItem("Pizza Queso", "La golosa, 12 pedazos", 234.99, "pizzaque.png", 12),
+
+                new PizzaCartItem("Pizza Jamón", "La de jamón, 8 pedazos", 60.99, "pizzajam.png", 8),
+                new PizzaCartItem("Pizza Jamón", "La de jamón, 10 pedazos", 100.99, "pizzajam.png", 10),
+                new PizzaCartItem("Pizza Jamón", "La de jamón, 12 pedazos", 199.99, "pizzajam.png", 12),
+
+                new PizzaCartItem("Pizza Hawaiana", "La de piña, 8 pedazos", 100.99, "pizzahaw.png", 8),
+                new PizzaCartItem("Pizza Hawaiana", "La de piña, 10 pedazos", 140.99, "pizzahaw.png", 10),
+                new PizzaCartItem("Pizza Hawaiana", "La de piña, 12 pedazos", 239.99, "pizzahaw.png", 12),
+
+                new CartItem("Agua", "Agua mineral", 20.00, "agua.png"),
+                new CartItem("Pepsi", "Botella pequeña", 30.00, "pepsi.png"),
+                new CartItem("7up", "Botella pequeña", 30.00, "7up.png"),
+                new CartItem("Coca Cola", "Botella pequeña", 30.00, "cocacola.png"),
+                new CartItem("Sprite", "Botella pequeña", 30.00, "sprite.png"),
+                new CartItem("Fanta", "Botella pequeña", 30.00, "fanta.png"),
         };
 
         HBox currentHBox = new HBox();
@@ -93,7 +118,7 @@ public class OrderController extends BaseController {
 
         int itemsInCurrentHBox = 0;
 
-        for (Item item : items) {
+        for (CartItem item : items) {
             if (itemsInCurrentHBox == 3) {
                 vBox.getChildren().add(currentHBox);
 
@@ -116,13 +141,17 @@ public class OrderController extends BaseController {
             itemName.setStyle("-fx-font-size: 16px; -fx-font-weight: bold");
             itemVBox.getChildren().add(itemName);
 
-            Label itemPrice = new Label("DOP $" + item.getPrice());
+            Label itemDesc = new Label(item.getDescription());
+            itemDesc.setStyle("-fx-font-size: 13px");
+            itemVBox.getChildren().add(itemDesc);
+
+            Label itemPrice = new Label("DOP $" + item.calculatePrice());
             itemPrice.setStyle("-fx-font-size: 14px; -fx-font-weight: normal");
             itemVBox.getChildren().add(itemPrice);
 
 
             itemVBox.setOnMouseClicked(event -> {
-                addToCart(item);
+                getShoppingCart().addItem(item);
                 updateCartUI();
             });
 
@@ -140,9 +169,6 @@ public class OrderController extends BaseController {
         setupCart();
     }
 
-    private final Map<Item, Integer> cart = new HashMap<>();
-    private double totalPrice = 0.0;
-
     private void setupCart() {
         cartVBox.setSpacing(10);
         cartVBox.setPadding(new Insets(10));
@@ -153,30 +179,20 @@ public class OrderController extends BaseController {
     private void updateCartUI() {
         cartVBox.getChildren().clear();
 
-        for (Map.Entry<Item, Integer> entry : cart.entrySet()) {
-            Item item = entry.getKey();
+        for (Map.Entry<CartItem, Integer> entry : getShoppingCart().getItems().entrySet()) {
+            CartItem item = entry.getKey();
             int quantity = entry.getValue();
-            Label cartItemLabel = new Label(quantity + " x " + item.getName() + " - DOP $" + Math.round((item.getPrice() * quantity) * 100.0) / 100.0);
+            Label cartItemLabel = new Label(quantity + " x " + item.getName() + " - DOP $" + Math.round((item.calculatePrice() * quantity) * 100.0) / 100.0);
             cartVBox.getChildren().add(cartItemLabel);
         }
 
-        Label totalLabel = new Label("Total: DOP $" + Math.round(totalPrice * 100.0) / 100.0);
+        Label totalLabel = new Label("Total: DOP $" + getShoppingCart().calculateTotalPrice());
         cartVBox.getChildren().add(totalLabel);
     }
 
-    private void addToCart(Item item) {
-        if (cart.containsKey(item)) {
-            cart.put(item, cart.get(item) + 1);
-        } else {
-            cart.put(item, 1);
-        }
-
-        totalPrice += item.getPrice();
-    }
 
     private void clearCart() {
-        cart.clear();
-        totalPrice = 0.0;
+        getShoppingCart().clearAllItems();
         updateCartUI();
     }
 
@@ -217,12 +233,13 @@ public class OrderController extends BaseController {
             fadeOut.setToValue(0.0);
             fadeOut.setCycleCount(1);
 
-            fadeOut.setOnFinished(eventB -> {
-                orderConfirmationStage.close();
-            });
-
+            fadeOut.setOnFinished(eventB -> orderConfirmationStage.close());
             fadeOut.play();
         });
         return formTransition;
+    }
+
+    public static ShoppingCart getShoppingCart() {
+        return App.getCurrentClient().getShoppingCart();
     }
 }

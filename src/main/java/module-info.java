@@ -13,6 +13,5 @@ module dev.moises.pizzahot {
 
     exports dev.moises.pizzahot;
     exports dev.moises.pizzahot.manager.client;
-    exports dev.moises.pizzahot.manager.items;
-    exports dev.moises.pizzahot.manager.order;
+    exports dev.moises.pizzahot.manager.cart;
 }

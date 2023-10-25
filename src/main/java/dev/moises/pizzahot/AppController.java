@@ -1,5 +1,6 @@
 package dev.moises.pizzahot;
 
+import dev.moises.pizzahot.manager.cart.ShoppingCart;
 import dev.moises.pizzahot.manager.client.Client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,8 +34,6 @@ public class AppController extends BaseController {
     @FXML
     public TextField clientPhoneNumber;
 
-    private final Validator validator = new Validator();
-
     public void createClient(MouseEvent mouseEvent) throws IOException {
         Client client = new Client();
 
@@ -53,6 +52,7 @@ public class AppController extends BaseController {
         client.setLastName(clientLastName.getText());
         client.setFullAddress(clientAddress.getText());
         client.setPhoneNumber(clientPhoneNumber.getText());
+        client.setShoppingCart(new ShoppingCart());
 
         App.setCurrentClient(client);
         App.changeFxml("order", (Stage) ((Button) mouseEvent.getSource()).getScene().getWindow());
